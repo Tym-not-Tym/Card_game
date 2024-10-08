@@ -1,9 +1,12 @@
 public class DeckOfCardsTest {
     public static void main(String[] args) {
+        DeckOfCards intr = new DeckOfCards();
+        intr.intro();
         DeckOfCards myDeckOfCards = new DeckOfCards();
+        
         myDeckOfCards.shuffle();
 
-        myDeckOfCards.intro();
+        myDeckOfCards.singleGame();
 
         //print all 52 Cards in the shaffled order
         /*for (int i = 1; i <= 52; i++) {

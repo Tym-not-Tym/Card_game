@@ -1,4 +1,5 @@
 import java.security.SecureRandom;
+import java.util.Scanner;
 
 import javax.smartcardio.Card;
 
@@ -58,7 +59,47 @@ public class DeckOfCards {
         System.out.println("Good luck!\n");
     }
 
-    
- 
-    
+    public void singleGame() {
+        Scanner scn = new Scanner(System.in);
+        Card[] dealCards = new Card[20];//array to store "dealed" cards
+        Card[] playeCards = new Card[20];
+        String consol;
+
+        dealCards[1] = dealCard();//for dealer
+        dealCards[2] = dealCard();
+
+        playeCards[1] = dealCard();//for player
+        playeCards[2] = dealCard();
+
+        System.out.println("DEALER CARDS:");
+        System.out.println("* / " + dealCards[2].toString() + "\n");
+
+        System.out.println("YOUR CARDS:");
+        System.out.println(playeCards[1].toString() + " / " + playeCards[2].toString() + "\n");
+
+        int cardsValue = 0;
+        for (int i = 1; i <= 2; i++){
+            cardsValue += playeCards[i].getValue();
+        }
+
+        if (cardsValue == 21) {//Check if the player wins at the very beginning.
+            System.out.println("You Win!");
+        } else {
+            boolean flag = false;//for while loop to hit or stay
+            int hitCount = 2;//used to add additional cards for player
+            do {
+                System.out.println("Hit or Stay");
+                consol = scn.next().toUpperCase();
+                if (consol.startsWith("H")) {
+                    playeCards[++hitCount] = dealCard();
+                    System.out.println(playeCards[hitCount].toString() + "\n");
+                    flag = true;
+                } else {
+                    flag = false;
+                }
+            } while (flag);
+        }
+
+    }
 }
+
