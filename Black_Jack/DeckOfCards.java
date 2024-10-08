@@ -87,7 +87,7 @@ public class DeckOfCards {
         } else {
             boolean flag = false;//for while loop to hit or stay
             do {
-                System.out.println("\nHit or Stay");
+                System.out.print("\nHit or Stay ");
                 consol = scn.next().toUpperCase();
                 if (consol.startsWith("H")) {
                     playeCards[++numOfCardsP] = dealCard();

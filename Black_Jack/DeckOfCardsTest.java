@@ -1,14 +1,35 @@
+import java.util.Scanner;
+
 public class DeckOfCardsTest {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         DeckOfCards intr = new DeckOfCards();
         intr.intro();
         DeckOfCards myDeckOfCards = new DeckOfCards();
-        
-        myDeckOfCards.shuffle();
+        String input;
+        do {
+            myDeckOfCards.shuffle();
+            myDeckOfCards.singleGame(); 
+            System.out.println("\nDo you want to play again? ");
+            input = scanner.next().toUpperCase();
+        } while (input.startsWith("Y"));
+    }
+}
 
-        myDeckOfCards.singleGame();
 
-        //print all 52 Cards in the shaffled order
+
+
+
+
+
+
+
+
+
+
+
+
+//print all 52 Cards in the shaffled order
         /*for (int i = 1; i <= 52; i++) {
             System.out.printf("%-19s", myDeckOfCards.dealCard());
             
@@ -16,6 +37,3 @@ public class DeckOfCardsTest {
                 System.out.println();
             }
         }*/
-    }
-}
-
