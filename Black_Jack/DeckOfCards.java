@@ -105,25 +105,29 @@ public class DeckOfCards {
                     
                     
                 } else if (consol.startsWith("S")){//if entered Stay
-                    do {//add additional cards to dealer if <13
+                    flag = false;
+                    do {//add additional cards to dealer if <17
                         cardsValueD = getCardsValue(numOfCardsD, dealCards);
-                        if (cardsValueD < 13) {
+                        if (cardsValueD < 17) {
                             dealCards[++numOfCardsD] = dealCard();
                         }
-                    } while (cardsValueD < 13);
+                    } while (cardsValueD < 17);
 
                     System.out.println("DEALER CARDS:");//prints dealer's cards
                     printCardsOnHand(numOfCardsD, dealCards);
-                    
-                    cardsValueP = getCardsValue(numOfCardsP, playeCards);//compare the values of the cards and choose a winner
-                    if (cardsValueD > cardsValueP) {
-                        System.out.println("\nYou Lost!");
-                    } else if (cardsValueD < cardsValueP){
-                        System.out.println("\nYou Win!");
-                    } else {
-                        System.out.println("\nIt's a Tie");
+
+                    if (cardsValueD > 21) {//if player exided 21
+                        System.out.println("\nYou Win!"); 
+                    } else {                    
+                        cardsValueP = getCardsValue(numOfCardsP, playeCards);//compare the values of the cards and choose a winner
+                        if (cardsValueD > cardsValueP) {
+                            System.out.println("\nYou Lost!");
+                        } else if (cardsValueD < cardsValueP){
+                            System.out.println("\nYou Win!");
+                        } else {
+                            System.out.println("\nIt's a Tie");
+                        }
                     }
-                    flag = false;
                 }
             } while (flag);
         }
