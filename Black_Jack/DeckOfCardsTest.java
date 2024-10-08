@@ -7,9 +7,9 @@ public class DeckOfCardsTest {
         intr.intro();
         DeckOfCards myDeckOfCards = new DeckOfCards();
         String input;
-        do {
-            myDeckOfCards.shuffle();
-            myDeckOfCards.singleGame(); 
+        do {//while loop for playing multiple games
+            myDeckOfCards.shuffle();//shuffle cards
+            myDeckOfCards.singleGame();//plays a single game
             System.out.println("\nDo you want to play again? ");
             input = scanner.next().toUpperCase();
         } while (input.startsWith("Y"));
