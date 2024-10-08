@@ -63,6 +63,10 @@ public class DeckOfCards {
         Scanner scn = new Scanner(System.in);
         Card[] dealCards = new Card[20];//array to store "dealed" cards
         Card[] playeCards = new Card[20];
+        int numOfCardsD = 2;//used to add additional cards for dealer
+        int numOfCardsP = 2;//used to add additional cards for player
+        int cardsValueP = 0;//cards value for player
+        int cardsValueD = 0;//cards value for dealer
         String consol;
 
         dealCards[1] = dealCard();//for dealer
@@ -75,21 +79,15 @@ public class DeckOfCards {
         System.out.println("* / " + dealCards[2].toString() + "\n");
 
         System.out.println("YOUR CARDS:");
-        System.out.println(playeCards[1].toString() + "  " + playeCards[2].toString() + "\n");
+        printCardsOnHand(numOfCardsP, playeCards);
 
-        int cardsValueP = 0;//cards value for player
-        int cardsValueD = 0;//cards value for dealer
-        int numOfCardsD = 2;//used to add additional cards for dealer
-        int numOfCardsP = 2;//used to add additional cards for player
-        
         cardsValueP = getCardsValue(numOfCardsP, playeCards);
-
         if (cardsValueP == 21) {//Check if the player wins at the very beginning.
-            System.out.println("You Win!");
+            System.out.println("\nYou Win!");
         } else {
             boolean flag = false;//for while loop to hit or stay
             do {
-                System.out.println("Hit or Stay");
+                System.out.println("\nHit or Stay");
                 consol = scn.next().toUpperCase();
                 if (consol.startsWith("H")) {
                     playeCards[++numOfCardsP] = dealCard();
@@ -115,10 +113,8 @@ public class DeckOfCards {
                     } while (cardsValueD < 13);
 
                     System.out.println("DEALER CARDS:");//prints dealer's cards
-                    for (int i = 1; i <= numOfCardsD ; i++) {
-                        System.out.print(dealCards[i].toString() + "  ");
-                    }
-
+                    printCardsOnHand(numOfCardsD, dealCards);
+                    
                     cardsValueP = getCardsValue(numOfCardsP, playeCards);//compare the values of the cards and choose a winner
                     if (cardsValueD > cardsValueP) {
                         System.out.println("\nYou Lost!");
@@ -140,6 +136,12 @@ public class DeckOfCards {
             cardsValue += playeCards[i].getValue();
         }
         return cardsValue;
+    }
+
+    public void printCardsOnHand(int numOfCards, Card[] playeCards) {
+        for (int i = 1; i <= numOfCards ; i++) {
+            System.out.print(playeCards[i].toString() + "  ");
+        }
     }
 }
 
