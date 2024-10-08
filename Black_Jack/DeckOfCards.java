@@ -75,31 +75,71 @@ public class DeckOfCards {
         System.out.println("* / " + dealCards[2].toString() + "\n");
 
         System.out.println("YOUR CARDS:");
-        System.out.println(playeCards[1].toString() + " / " + playeCards[2].toString() + "\n");
+        System.out.println(playeCards[1].toString() + "  " + playeCards[2].toString() + "\n");
 
-        int cardsValue = 0;
-        for (int i = 1; i <= 2; i++){
-            cardsValue += playeCards[i].getValue();
-        }
+        int cardsValueP = 0;//cards value for player
+        int cardsValueD = 0;//cards value for dealer
+        int numOfCardsD = 2;//used to add additional cards for dealer
+        int numOfCardsP = 2;//used to add additional cards for player
+        
+        cardsValueP = getCardsValue(numOfCardsP, playeCards);
 
-        if (cardsValue == 21) {//Check if the player wins at the very beginning.
+        if (cardsValueP == 21) {//Check if the player wins at the very beginning.
             System.out.println("You Win!");
         } else {
             boolean flag = false;//for while loop to hit or stay
-            int hitCount = 2;//used to add additional cards for player
             do {
                 System.out.println("Hit or Stay");
                 consol = scn.next().toUpperCase();
                 if (consol.startsWith("H")) {
-                    playeCards[++hitCount] = dealCard();
-                    System.out.println(playeCards[hitCount].toString() + "\n");
+                    playeCards[++numOfCardsP] = dealCard();
+                    System.out.println(playeCards[numOfCardsP].toString() + "\n");
                     flag = true;
-                } else {
+                    cardsValueP = getCardsValue(numOfCardsP, playeCards);
+                    if (cardsValueP > 21) {//if player exided 21
+                        System.out.println("You Lost!"); 
+                        flag = false;
+                    } else if (cardsValueP == 21) {//Check if the player wins
+                        System.out.println("You Win!");
+                        flag = false;
+                    }
+                    //System.out.println(cardsValueP);//print value of my cards
+                    
+                    
+                } else if (consol.startsWith("S")){//if entered Stay
+                    do {//add additional cards to dealer if <13
+                        cardsValueD = getCardsValue(numOfCardsD, dealCards);
+                        if (cardsValueD < 13) {
+                            dealCards[++numOfCardsD] = dealCard();
+                        }
+                    } while (cardsValueD < 13);
+
+                    System.out.println("DEALER CARDS:");//prints dealer's cards
+                    for (int i = 1; i <= numOfCardsD ; i++) {
+                        System.out.print(dealCards[i].toString() + "  ");
+                    }
+
+                    cardsValueP = getCardsValue(numOfCardsP, playeCards);//compare the values of the cards and choose a winner
+                    if (cardsValueD > cardsValueP) {
+                        System.out.println("\nYou Lost!");
+                    } else if (cardsValueD < cardsValueP){
+                        System.out.println("\nYou Win!");
+                    } else {
+                        System.out.println("\nIt's a Tie");
+                    }
                     flag = false;
                 }
             } while (flag);
         }
 
+    }
+
+    public int getCardsValue(int numOfCards, Card[] playeCards) {//get value of the cards on hand
+        int cardsValue = 0;
+        for (int i = 1; i <= numOfCards; i++){
+            cardsValue += playeCards[i].getValue();
+        }
+        return cardsValue;
     }
 }
 
