@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class DeckOfCardsTest {
     public static void main(String[] args) {
-        BlackJackGUI GUI = new BlackJackGUI(); 
+        BlackJackGUI gui = new BlackJackGUI(); 
         Scanner scanner = new Scanner(System.in);
         DeckOfCards intr = new DeckOfCards();
         intr.intro();
