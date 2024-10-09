@@ -93,6 +93,7 @@ public class DeckOfCards {
 
         cardsValueP = getCardsValue(numOfCardsP, playeCards);
         if (cardsValueP == 21) {//Check if the player wins at the very beginning.
+            totalChips = chipCounter(totalChips, betChips, true);
             System.out.println("\nWOW!, lucky. You now have " + totalChips);   //////////////////////////////// po//p up prompt once action is completed
         } else {
             boolean flag = false;//for while loop to hit or stay
@@ -107,7 +108,7 @@ public class DeckOfCards {
                     if (cardsValueP > 21) {//if player exided 21
                         System.out.println("You Lost!"); ///////////////////// on screen prompt 
                         totalChips = chipCounter(totalChips, betChips, false);
-                        System.out.println(totalChips);
+                        System.out.println(totalChips + " Chips left!");
                         flag = false;
                     } else if (cardsValueP == 21) {//Check if the player wins
                         System.out.println("You Win!");////////////////////// on screen prompt
@@ -133,7 +134,7 @@ public class DeckOfCards {
                     if (cardsValueD > 21) {//if player exided 21
                         System.out.println("\nYou Win!");  //////////////////////// prompt
                         totalChips = chipCounter(totalChips, betChips, true);
-                        System.out.println("STRAAAAAIIIIGHT, you now have" + totalChips + "!"); 
+                        System.out.println("STRAAAAAIIIIGHT, you now have " + totalChips + "!"); 
                     } else {                    
                         cardsValueP = getCardsValue(numOfCardsP, playeCards);//compare the values of the cards and choose a winner
                         if (cardsValueD > cardsValueP) {
@@ -148,7 +149,7 @@ public class DeckOfCards {
                         } else {
                             System.out.println("\nIt's a Tie");
                             totalChips = chipCounter(totalChips, betChips, true);
-                            System.out.println(totalChips);
+                            System.out.println(totalChips + " Chips left!");
                         }
                     }
                 }

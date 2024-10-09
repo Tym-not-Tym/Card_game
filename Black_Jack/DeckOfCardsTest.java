@@ -1,3 +1,12 @@
+/* Dylan Torres, Tymofiy Grebenyuk, Agastya M
+10/8/2024
+CS& 145
+Lab 2: Card Game 
+
+This program lets the user play Blackjack.
+
+For extra credit, we implemented: Exception handling, switch/case statements, try/catch blocks, and printf, and little bit of GUI.*/
+
 import java.util.Scanner;
 
 public class DeckOfCardsTest {
