@@ -12,15 +12,19 @@ public class Card {
     }
 
     public int getValue() {
-        if (face.startsWith("A") || face.startsWith("J") 
-                || face.startsWith("Q") || face.startsWith("K") ) {
-            if (face.startsWith("A")) {
-                return 11;
-            } else {
-                return 10;
-            }
-         } else {
-            return Integer.parseInt(face);
-         }
-    }
+    
+        //stores the face of the card as an integer value 
+        switch (face) {
+            case "Ace":
+                return 11; 
+            case "King":
+            case "Queen":
+            case "Jack":
+                return 10; 
+            default: 
+                return Integer.parseInt(face); //all other cards hold designated value 
+
+        }
+    }        
+                 
 }

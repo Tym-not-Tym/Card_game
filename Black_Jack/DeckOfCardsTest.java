@@ -10,30 +10,20 @@ public class DeckOfCardsTest {
         do {//while loop for playing multiple games
             myDeckOfCards.shuffle();//shuffle cards
             myDeckOfCards.singleGame();//plays a single game
-            System.out.println("\nDo you want to play again? ");
-            input = scanner.next().toUpperCase();
-        } while (input.startsWith("Y"));
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//print all 52 Cards in the shaffled order
-        /*for (int i = 1; i <= 52; i++) {
-            System.out.printf("%-19s", myDeckOfCards.dealCard());
-            
-            if (i % 4 == 0) {
-                System.out.println();
+            while (true) {
+                System.out.println("\nDo you want to play again? ");
+                input = scanner.next().toUpperCase();
+                if (input.startsWith("Y") || input.startsWith("N")) {
+                    break; //if input is valid, exit
+                } else {
+                    System.out.println("Invalid input. Please enter Y or N");
+                }
             }
-        }*/
+        } while (input.startsWith("Y"));
+        
+    }
+
+
+
+
+}
