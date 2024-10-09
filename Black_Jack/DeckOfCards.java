@@ -159,7 +159,7 @@ public class DeckOfCards {
     }
 
 
-    private int getBet(Scanner scn) {
+    public int getBet(Scanner scn) {
         int betChips = 0; // create betting chips 
         while (true) {
             System.out.print("How much are we betting? ");
